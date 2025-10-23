@@ -250,20 +250,6 @@ await depositAndStake(
 )
 ```
 
-### For Admins
-
-#### Automated Rent Optimization
-```bash
-# Add to crontab for weekly optimization
-0 2 * * 1 curl -X GET https://your-domain.com/api/admin/rent-optimization \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  | jq '.recommendations[].address' \
-  | xargs -I {} curl -X POST https://your-domain.com/api/admin/rent-optimization \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{"potAddresses": ["{}"], "minInactiveDays": 90, "dryRun": false}'
-```
-
 #### Compression Management
 Visit `/admin/compression` to:
 - Calculate ROI for different pot volumes
